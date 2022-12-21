@@ -1,10 +1,16 @@
 ---
 # tasks file for inah-module
 
+- name: Create pip config folder
+  ansible.builtin.file:
+    state: directory
+    path: "{{ ansible_env.HOME }}/config/pip"
+    mode: 0700
+
 - name: Add pip credentials to nexus
   ansible.builtin.template:
     src: pip.conf.j2
-    dest: "{{ ansible_user_home }}/config/pip/pip.conf"
+    dest: "{{ ansible_env.HOME }}/config/pip/pip.conf"
     mode: 0600
 
 - name: Install module
