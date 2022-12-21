@@ -1,6 +1,6 @@
 ---
 # defaults file for inah-module
-inah_module: inah_module_updater
+inah_module: inah_module_to_update
 nexus_url: nexus.domain.com/repository/repo/
 username: change_me
 password: change_me
