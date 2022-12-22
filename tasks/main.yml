@@ -17,4 +17,4 @@
   ansible.builtin.pip:
     name: "{{ inah_module }}"
     state: latest
-    executable: "pip3.11"
+    executable: "{{ pip_version }}"

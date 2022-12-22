@@ -4,3 +4,4 @@ inah_module: inah_module_to_update
 nexus_url: nexus.domain.com/repository/repo/
 username: change_me
 password: change_me
+pip_version: "pip3.11"
