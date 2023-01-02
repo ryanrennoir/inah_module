@@ -1,0 +1,29 @@
+- name: Delete tmp directory
+  ansible.builtin.file:
+    state: absent
+    path: "/tmp/inah_package"
+
+- name: Create tmp directory
+  ansible.builtin.file:
+    state: directory
+    mode: 0644
+    path: "/tmp/inah_package"
+
+- name: Upload package
+  ansible.builtin.copy:
+    src: "./{{ build_folder }}/"
+    remote_src: false
+    mode: 0644
+    dest: "/tmp/inah_package/"
+
+- name: Find package name
+  ansible.builtin.find:
+    path: "/tmp/inah_package"
+    pattern: "*.whl"
+  register: inah_packages
+
+- name: Install package
+  ansible.builtin.pip:
+    name: "file://{{ inah_package.files[0].path }}"
+    state: forcereinstall
+    executable: "{{ pip_version }}"

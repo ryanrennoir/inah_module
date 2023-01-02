@@ -1,0 +1,5 @@
+- name: "Install module {{ inah_module }}"
+  ansible.builtin.pip:
+    name: "{{ inah_module }}"
+    state: forcereinstall
+    executable: "{{ pip_version }}"

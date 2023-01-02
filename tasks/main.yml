@@ -13,8 +13,12 @@
     dest: "{{ ansible_env.HOME }}/.config/pip/pip.conf"
     mode: 0600
 
-- name: "Install module {{ inah_module }}"
-  ansible.builtin.pip:
-    name: "{{ inah_module }}"
-    state: latest
-    executable: "{{ pip_version }}"
+- name: "Import task for install with nexus"
+  ansible.builtin.include_tasks:
+    file: nexus.yml
+  when: use_nexus
+
+- name: "Import task for install with file"
+  ansible.builtin.include_tasks:
+    file: local.yml
+  when: not use_nexus
