@@ -16,9 +16,9 @@
 - name: "Import task for install with nexus"
   ansible.builtin.include_tasks:
     file: nexus.yml
-  when: use_nexus
+  when: use_nexus|bool
 
 - name: "Import task for install with file"
   ansible.builtin.include_tasks:
     file: local.yml
-  when: not use_nexus
+  when: not use_nexus|bool
