@@ -6,14 +6,14 @@
 - name: Create tmp directory
   ansible.builtin.file:
     state: directory
-    mode: 0644
+    mode: 0755
     path: "/tmp/inah_package"
 
 - name: Upload package
   ansible.builtin.copy:
     src: "./{{ build_folder }}/"
     remote_src: false
-    mode: 0644
+    mode: 0755
     dest: "/tmp/inah_package/"
 
 - name: Find package name
@@ -24,6 +24,6 @@
 
 - name: Install package
   ansible.builtin.pip:
-    name: "file://{{ inah_package.files[0].path }}"
+    name: "file://{{ inah_packages.files[0].path }}"
     state: forcereinstall
     executable: "{{ pip_version }}"
